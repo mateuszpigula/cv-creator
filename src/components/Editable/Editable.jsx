@@ -32,10 +32,12 @@ export const Editable = ({
     dispatch({ type: action, payload: { value, target } });
     setEditable(false);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSave();
   };
+
   const onEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
@@ -43,34 +45,43 @@ export const Editable = ({
     }
   };
 
+  const getInputComponent = () => {
+    if (textarea) {
+      return (
+        <textarea
+          value={value}
+          cols={cols}
+          rows={value.length / cols + 2}
+          onChange={handleChange}
+          onBlur={handleSave}
+          ref={input}
+          onKeyDown={onEnterPress}
+        />
+      );
+    }
+
+    return (
+      <Input
+        type={"text"}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleSave}
+        ref={input}
+      />
+    );
+  };
+
   if (editable) {
     return (
       <Tag>
         <form onSubmit={handleSubmit} ref={form}>
           {label && <label>{label}: </label>}
-          {textarea ? (
-            <textarea
-              value={value}
-              cols={cols}
-              rows={value.length / cols + 2}
-              onChange={handleChange}
-              onBlur={handleSave}
-              ref={input}
-              onKeyDown={onEnterPress}
-            />
-          ) : (
-            <Input
-              type={"text"}
-              value={value}
-              onChange={handleChange}
-              onBlur={handleSave}
-              ref={input}
-            />
-          )}
+          {getInputComponent()}
         </form>
       </Tag>
     );
   }
+
   return (
     <StyledTag as={Tag} onClick={() => setEditable(true)} {...rest}>
       {label && `${label}: `}

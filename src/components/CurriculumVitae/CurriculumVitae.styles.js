@@ -64,20 +64,6 @@ export const List = styled.ul`
   }
 `;
 
-export const Avatar = styled.div`
-  border-radius: 50%;
-  height: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  margin-left: -130px;
-  overflow: hidden;
-
-  img {
-    height: 110%;
-    width: 110%;
-  }
-`;
-
 export const PersonalData = styled.div`
   display: flex;
   flex-direction: column;

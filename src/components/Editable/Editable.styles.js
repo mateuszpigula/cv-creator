@@ -7,7 +7,7 @@ export const Input = styled.input`
 `;
 
 export const PencilIcon = styled.span`
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
@@ -18,6 +18,8 @@ export const PencilIcon = styled.span`
   transform: translate(50%, -50%);
   padding: 0.5em;
   top: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
   font-size: 10px;
 `;
 
@@ -25,6 +27,7 @@ export const StyledTag = styled.div`
   display: inline-block;
   cursor: pointer;
   position: relative;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     padding: 0.25em;
@@ -33,7 +36,7 @@ export const StyledTag = styled.div`
     border-radius: 0.2em;
 
     ${PencilIcon} {
-      display: flex;
+      opacity: 1;
     }
   }
 `;

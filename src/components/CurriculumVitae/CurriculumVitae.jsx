@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import {
   Address,
-  Avatar,
   Company,
   CV,
   Description,
@@ -24,6 +23,7 @@ import {
 import { ResumeContext } from "../../contexts/ResumeContext/ResumeDataProvider";
 import { Editable } from "../Editable/Editable";
 import * as actions from "../../actions";
+import { EditableAvatar } from "../Editable/EditableAvatar/EditableAvatar";
 
 export const CurriculumVitae = (props) => {
   const { state } = useContext(ResumeContext);
@@ -70,9 +70,7 @@ export const CurriculumVitae = (props) => {
       </LeftSide>
       <RightSide>
         <Header>
-          <Avatar>
-            <img src={`/images/avatar/${state.avatar}`} alt={state.name} />
-          </Avatar>
+          <EditableAvatar />
           <PersonalData>
             <Editable tag={Name} initialValue={state.name} target={"name"} />
             {state.position && (

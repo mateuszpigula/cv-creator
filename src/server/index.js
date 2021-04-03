@@ -1,9 +1,11 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
+const bodyParser = require("body-parser");
 const app = express();
 const port = 8000;
 
-app.use(express.json());
+app.use(bodyParser.json({ limit: "10mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use((req, res, next) => {
   //allow cross origin requests
   res.setHeader(
@@ -17,10 +19,6 @@ app.use((req, res, next) => {
   );
   res.header("Access-Control-Allow-Credentials", true);
   next();
-});
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
 });
 
 app.post("/pdf", async (req, res) => {
