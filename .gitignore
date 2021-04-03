@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# eslint
+.eslintcache
+
+# sensitive data
+src/json/
+!src/json/example.json
+public/images/avatar/
+
+# generated cv
+resume.pdf
