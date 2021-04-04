@@ -25,6 +25,7 @@ app.post('/pdf', async (req, res) => {
   const url = `${req.get('Origin')}/resume`;
   const browser = await puppeteer.launch({
     headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
   const page = await browser.newPage();
   await page.goto(url);
