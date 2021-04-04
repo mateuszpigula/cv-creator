@@ -17,12 +17,12 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 app.post('/pdf', async (req, res) => {
-  const url = 'http://localhost:3000/resume';
+  const url = `http://localhost:${port}/resume`;
   const browser = await puppeteer.launch({
     headless: true,
   });
