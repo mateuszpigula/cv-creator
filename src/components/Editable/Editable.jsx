@@ -18,7 +18,7 @@ export const Editable = ({
   const [editable, setEditable] = useState(false);
   const input = useRef(null);
   const form = useRef(null);
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(null);
   const Tag = tag;
 
   useEffect(() => {
@@ -26,6 +26,10 @@ export const Editable = ({
       input.current.focus();
     }
   }, [editable]);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   const handleChange = (e) => setValue(e.target.value);
   const handleSave = () => {
@@ -85,7 +89,7 @@ export const Editable = ({
   return (
     <StyledTag as={Tag} onClick={() => setEditable(true)} {...rest}>
       {label && `${label}: `}
-      {value.split("\n").map((part) => (
+      {value?.split("\n").map((part) => (
         <span key={part}>
           {part}
           <br />

@@ -15,4 +15,7 @@ body {
 * {
   box-sizing: border-box;
 }
+p {
+  margin: 0;
+}
 `;

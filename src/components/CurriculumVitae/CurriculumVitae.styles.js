@@ -19,7 +19,6 @@ const Container = styled.div`
 `;
 
 export const LeftSide = styled(Container)`
-  // padding-top: 300px;
   padding-top: 196px;
   width: 250px;
   background: ${blue};
@@ -37,6 +36,8 @@ export const Skills = styled.div`
   line-height: 1.5;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 
   &:last-of-type {
     border: none;
@@ -101,7 +102,6 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  // margin-bottom: 74px;
 `;
 
 export const Section = styled.div`

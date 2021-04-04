@@ -52,6 +52,9 @@ const resumeReducer = (state, action) => {
     }
     case actions.RESET:
       return updateLocalStorage({ ...defaultState });
+    case actions.IMPORT_JSON: {
+      return updateLocalStorage({ ...action.payload });
+    }
     default:
       throw new Error();
   }

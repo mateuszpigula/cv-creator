@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import { CurriculumVitae } from "../CurriculumVitae/CurriculumVitae";
-import { DownloadPDF } from "./Home.styles";
 import { ResumeContext } from "../../contexts/ResumeContext/ResumeDataProvider";
+import { Button } from "../Button/Button";
+import { ImportJSON } from "../ImportJSON/ImportJSON";
+import { ExportJSON } from "../ExportJSON/ExportJSON";
 
 export const Home = () => {
   const { state } = useContext(ResumeContext);
@@ -23,7 +25,9 @@ export const Home = () => {
 
   return (
     <div>
-      <DownloadPDF onClick={handleDownload}>Download PDF</DownloadPDF>
+      <Button onClick={handleDownload}>Download PDF</Button>
+      <ImportJSON />
+      <ExportJSON />
       <CurriculumVitae />
     </div>
   );

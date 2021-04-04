@@ -27,7 +27,7 @@ yarn-error.log*
 .eslintcache
 
 # sensitive data
-src/json/
+src/json/*
 !src/json/example.json
 public/images/avatar/
 
