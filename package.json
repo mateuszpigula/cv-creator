@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "concurrently 'npm:start' 'npm:server'",
-    "server": "nodemon src/server/index.js",
+    "start": "nodemon server/index.js",
+    "client": "react-scripts start",
+    "dev": "concurrently 'npm:client' 'npm:start'",
     "lint": "eslint . --ext .js,.jsx",
     "build": "react-scripts build",
     "test": "react-scripts test",

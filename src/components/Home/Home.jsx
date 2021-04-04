@@ -5,15 +5,15 @@ import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
 import { Button } from '../Button/Button';
 import { ImportJSON } from '../ImportJSON/ImportJSON';
 import { ExportJSON } from '../ExportJSON/ExportJSON';
+import { link } from '../../utils/links';
 
 export const Home = () => {
   const { state } = useContext(ResumeContext);
 
   const handleDownload = () => {
     axios
-      .post('http://localhost:8000/pdf', state, { responseType: 'arraybuffer' })
+      .post(link('pdf'), state, { responseType: 'arraybuffer' })
       .then((response) => {
-        console.log(response);
         const file = new Blob([response.data], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
         window.open(fileURL);

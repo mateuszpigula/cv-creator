@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require('express');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json({ limit: '10mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
@@ -13,6 +14,11 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', true);
   next();
+});
+app.use(express.static(path.join(__dirname, '../build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.post('/pdf', async (req, res) => {
