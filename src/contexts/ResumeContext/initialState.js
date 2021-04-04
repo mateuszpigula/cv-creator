@@ -1,2 +1,2 @@
-import cv from "../../json/example.json";
+import cv from '../../json/example.json';
 export default cv;

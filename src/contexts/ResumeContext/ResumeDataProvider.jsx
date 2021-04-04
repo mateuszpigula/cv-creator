@@ -1,15 +1,15 @@
-import React, { useEffect, useReducer } from "react";
-import defaultState from "./initialState";
-import * as actions from "../../actions";
+import React, { useEffect, useReducer } from 'react';
+import defaultState from './initialState';
+import * as actions from '../../actions';
 
 export const ResumeContext = React.createContext();
 const init = (initialState) => initialState;
-const initialState = localStorage.getItem("data")
-  ? JSON.parse(localStorage.getItem("data"))
+const initialState = localStorage.getItem('data')
+  ? JSON.parse(localStorage.getItem('data'))
   : defaultState;
 
 const updateLocalStorage = (state) => {
-  localStorage.setItem("data", JSON.stringify(state));
+  localStorage.setItem('data', JSON.stringify(state));
   return state;
 };
 
@@ -30,7 +30,7 @@ const resumeReducer = (state, action) => {
     }
     case actions.EDIT_SKILL: {
       const { target, value } = action.payload;
-      const [section, property, index, skillIndex] = target.split("::");
+      const [section, property, index, skillIndex] = target.split('::');
       const newSection = [...state[section]];
       newSection[index][property][skillIndex] = value;
 
@@ -41,7 +41,7 @@ const resumeReducer = (state, action) => {
     }
     case actions.EDIT_SECTION: {
       const { target, value } = action.payload;
-      const [section, property, index] = target.split("::");
+      const [section, property, index] = target.split('::');
       const newSection = [...state[section]];
       newSection[index][property] = value;
 
@@ -63,12 +63,8 @@ export const ResumeDataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(resumeReducer, initialState, init);
 
   useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(state));
+    localStorage.setItem('data', JSON.stringify(state));
   }, [state]);
 
-  return (
-    <ResumeContext.Provider value={{ state, dispatch }}>
-      {children}
-    </ResumeContext.Provider>
-  );
+  return <ResumeContext.Provider value={{ state, dispatch }}>{children}</ResumeContext.Provider>;
 };

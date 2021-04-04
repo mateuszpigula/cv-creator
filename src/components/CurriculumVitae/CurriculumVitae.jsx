@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import {
   Address,
   Company,
@@ -19,31 +19,26 @@ import {
   Subtitle,
   Time,
   SkillsItem,
-} from "./CurriculumVitae.styles";
-import { ResumeContext } from "../../contexts/ResumeContext/ResumeDataProvider";
-import { Editable } from "../Editable/Editable";
-import * as actions from "../../actions";
-import { EditableAvatar } from "../Editable/EditableAvatar/EditableAvatar";
+} from './CurriculumVitae.styles';
+import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
+import { Editable } from '../Editable/Editable';
+import * as actions from '../../actions';
+import { EditableAvatar } from '../Editable/EditableAvatar/EditableAvatar';
 
 export const CurriculumVitae = (props) => {
   const { state } = useContext(ResumeContext);
 
   return (
-    <CV id={"cv-paper"} {...props}>
+    <CV id={'cv-paper'} {...props}>
       <LeftSide>
         <Skills>
           <Editable
             tag={SkillsTitle}
             initialValue={state.headings.bio}
             action={actions.EDIT_TITLE}
-            target={"bio"}
+            target={'bio'}
           />
-          <Editable
-            tag={"p"}
-            initialValue={state.bio}
-            target={"bio"}
-            textarea
-          />
+          <Editable tag={'p'} initialValue={state.bio} target={'bio'} textarea />
         </Skills>
         {state.skills.map((skill, index) => (
           <Skills key={skill.type}>
@@ -72,21 +67,17 @@ export const CurriculumVitae = (props) => {
         <Header>
           <EditableAvatar />
           <PersonalData>
-            <Editable tag={Name} initialValue={state.name} target={"name"} />
+            <Editable tag={Name} initialValue={state.name} target={'name'} />
             {state.position && (
-              <Editable
-                tag={Subtitle}
-                initialValue={state.position}
-                target={"position"}
-              />
+              <Editable tag={Subtitle} initialValue={state.position} target={'position'} />
             )}
             <Address>
-              {["Address", "Phone", "Email"].map((name) => {
+              {['Address', 'Phone', 'Email'].map((name) => {
                 const type = name.toLowerCase();
                 return (
                   <Editable
                     key={name}
-                    tag={"span"}
+                    tag={'span'}
                     initialValue={state[type]}
                     target={type}
                     label={name}
@@ -101,7 +92,7 @@ export const CurriculumVitae = (props) => {
             tag={SectionTitle}
             initialValue={state.headings.experience}
             action={actions.EDIT_TITLE}
-            target={"experience"}
+            target={'experience'}
           />
           {[...state.experience].map((company, index) => (
             <Detail key={company.name}>
@@ -138,7 +129,7 @@ export const CurriculumVitae = (props) => {
             tag={SectionTitle}
             initialValue={state.headings.education}
             action={actions.EDIT_TITLE}
-            target={"education"}
+            target={'education'}
           />
           {[...state.education].reverse().map((school, index) => (
             <Detail key={school.name}>
@@ -175,7 +166,7 @@ export const CurriculumVitae = (props) => {
             tag={SectionTitle}
             initialValue={state.headings.languages}
             action={actions.EDIT_TITLE}
-            target={"languages"}
+            target={'languages'}
           />
           {state.languages.map((language, index) => (
             <Detail small key={language.language}>

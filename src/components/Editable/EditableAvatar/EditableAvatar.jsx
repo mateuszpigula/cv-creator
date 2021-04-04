@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { ResumeContext } from "../../../contexts/ResumeContext/ResumeDataProvider";
-import { UPDATE_DATA } from "../../../actions";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { ResumeContext } from '../../../contexts/ResumeContext/ResumeDataProvider';
+import { UPDATE_DATA } from '../../../actions';
 
 const AvatarContainer = styled.div`
   border-radius: 50%;
@@ -14,7 +14,7 @@ const AvatarContainer = styled.div`
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     width: 100%;
     height: 100%;
     left: 0;
@@ -50,7 +50,7 @@ export const EditableAvatar = () => {
 
   const handleSave = (value) => {
     console.log(value);
-    dispatch({ type: UPDATE_DATA, payload: { value, target: "avatar" } });
+    dispatch({ type: UPDATE_DATA, payload: { value, target: 'avatar' } });
     setEditable(false);
   };
 
@@ -71,7 +71,7 @@ export const EditableAvatar = () => {
         <AvatarContainer onClick={() => setEditable(!editable)}>
           <img src={state.avatar} alt={state.name} />
         </AvatarContainer>
-        <input type="file" ref={input} hidden onChange={handleFileChange} />
+        <input type='file' ref={input} hidden onChange={handleFileChange} />
       </>
     );
   }

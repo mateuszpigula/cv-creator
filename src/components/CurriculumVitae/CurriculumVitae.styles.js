@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 const WIDTH = 800;
 const HEIGHT = WIDTH * 1.4142;
-const red = "#b63e58";
-const blue = "#2e3948";
-const light_blue = "#5f6270";
+const red = '#b63e58';
+const blue = '#2e3948';
+const light_blue = '#5f6270';
 
 export const CV = styled.div`
   width: ${WIDTH}px;
   height: ${HEIGHT}px;
   display: flex;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-weight: 300;
   font-size: 0.85em;
 `;
@@ -47,7 +47,7 @@ export const Skills = styled.div`
 export const SkillsTitle = styled.h3`
   color: ${red};
   text-transform: uppercase;
-  font-family: "Bebas Neue", cursive;
+  font-family: 'Bebas Neue', cursive;
   font-size: 1.5em;
   letter-spacing: 2px;
   margin: 0 0 0.25em;
@@ -109,7 +109,7 @@ export const Section = styled.div`
   position: relative;
 
   &::before {
-    content: "";
+    content: '';
     height: 2px;
     width: 370px;
     background: ${blue};
@@ -132,17 +132,17 @@ export const Detail = styled.div`
   grid-template-columns: 1fr 370px;
   grid-gap: 5px 20px;
   grid-template-areas:
-    "time ."
-    "pos desc"
-    "com desc"
-    ". desc";
-  margin-bottom: ${(props) => (props.small ? 0 : "2em")};
+    'time .'
+    'pos desc'
+    'com desc'
+    '. desc';
+  margin-bottom: ${(props) => (props.small ? 0 : '2em')};
 `;
 
 export const Time = styled.span`
   color: ${red};
   font-size: 0.9em;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   grid-area: time;
 `;
 
@@ -154,7 +154,7 @@ export const Position = styled.span`
 
 export const Company = styled.span`
   text-transform: uppercase;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.2em;
   grid-area: com;
 `;
@@ -168,6 +168,6 @@ export const Description = styled.p`
 
 export const SkillsItem = styled.li`
   & + & {
-    margin-top: ${(props) => props.space || ""};
+    margin-top: ${(props) => props.space || ''};
   }
 `;

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { FaPencilAlt } from "react-icons/fa";
-import { ResumeContext } from "../../contexts/ResumeContext/ResumeDataProvider";
-import * as actions from "../../actions";
-import { Input, PencilIcon, StyledTag } from "./Editable.styles";
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { FaPencilAlt } from 'react-icons/fa';
+import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
+import * as actions from '../../actions';
+import { Input, PencilIcon, StyledTag } from './Editable.styles';
 
 const cols = 30;
 export const Editable = ({
@@ -65,13 +65,7 @@ export const Editable = ({
     }
 
     return (
-      <Input
-        type={"text"}
-        value={value}
-        onChange={handleChange}
-        onBlur={handleSave}
-        ref={input}
-      />
+      <Input type={'text'} value={value} onChange={handleChange} onBlur={handleSave} ref={input} />
     );
   };
 
@@ -89,7 +83,7 @@ export const Editable = ({
   return (
     <StyledTag as={Tag} onClick={() => setEditable(true)} {...rest}>
       {label && `${label}: `}
-      {value?.split("\n").map((part) => (
+      {value?.split('\n').map((part) => (
         <span key={part}>
           {part}
           <br />
