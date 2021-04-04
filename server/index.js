@@ -22,7 +22,7 @@ app.get('*', function (req, res) {
 });
 
 app.post('/pdf', async (req, res) => {
-  const url = `http://localhost:${port}/resume`;
+  const url = `${req.get('Origin')}/resume`;
   const browser = await puppeteer.launch({
     headless: true,
   });
