@@ -1,4 +1,8 @@
 import React, { useContext } from 'react';
+import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
+import { Editable } from '../Editable/Editable';
+import * as actions from '../../actions';
+import { EditableAvatar } from '../Editable/EditableAvatar/EditableAvatar';
 import {
   Address,
   Company,
@@ -20,10 +24,6 @@ import {
   Time,
   SkillsItem,
 } from './CurriculumVitae.styles';
-import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
-import { Editable } from '../Editable/Editable';
-import * as actions from '../../actions';
-import { EditableAvatar } from '../Editable/EditableAvatar/EditableAvatar';
 
 export const CurriculumVitae = (props) => {
   const { state } = useContext(ResumeContext);

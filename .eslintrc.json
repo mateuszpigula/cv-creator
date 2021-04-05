@@ -11,11 +11,23 @@
       "jsx": true
     }
   },
-  "extends": ["plugin:react/recommended", "eslint:recommended"],
-  "plugins": ["prettier"],
+  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:import/errors"],
+  "plugins": ["prettier", "better-styled-components"],
   "rules": {
     "prettier/prettier": ["error"],
     "no-unused-vars": "warn",
-    "react/prop-types": ["off"]
+    "react/prop-types": ["off"],
+    "better-styled-components/sort-declarations-alphabetically": "error",
+    "import/order": 2
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
   }
 }

@@ -5,24 +5,24 @@ import { UPDATE_DATA } from '../../../actions';
 
 const AvatarContainer = styled.div`
   border-radius: 50%;
-  height: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  margin-left: -130px;
-  overflow: hidden;
   cursor: pointer;
+  height: 150px;
+  margin-left: -130px;
+  max-width: 150px;
+  min-width: 150px;
+  overflow: hidden;
   position: relative;
 
   &::after {
+    background: rgb(204 204 204 / 50%);
     content: '';
-    width: 100%;
     height: 100%;
     left: 0;
-    top: 0;
-    background: rgb(204 204 204 / 50%);
-    position: absolute;
     opacity: 0;
+    position: absolute;
+    top: 0;
     transition: opacity 0.2s ease-in-out;
+    width: 100%;
   }
 
   &:hover::after {

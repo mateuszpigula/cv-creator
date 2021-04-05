@@ -6,12 +6,12 @@ const blue = '#2e3948';
 const light_blue = '#5f6270';
 
 export const CV = styled.div`
-  width: ${WIDTH}px;
-  height: ${HEIGHT}px;
   display: flex;
   font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 300;
   font-size: 0.85em;
+  font-weight: 300;
+  height: ${HEIGHT}px;
+  width: ${WIDTH}px;
 `;
 
 const Container = styled.div`
@@ -19,25 +19,25 @@ const Container = styled.div`
 `;
 
 export const LeftSide = styled(Container)`
-  padding-top: 196px;
-  width: 250px;
   background: ${blue};
   color: #fefefe;
+  padding-top: 196px;
+  width: 250px;
 `;
 
 export const RightSide = styled(Container)`
-  flex: 1;
   background: #fefefe;
+  flex: 1;
 `;
 
 export const Skills = styled.div`
   border-bottom: 2px solid ${red};
-  font-size: 1em;
-  line-height: 1.5;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
 
   &:last-of-type {
     border: none;
@@ -46,11 +46,11 @@ export const Skills = styled.div`
 
 export const SkillsTitle = styled.h3`
   color: ${red};
-  text-transform: uppercase;
   font-family: 'Bebas Neue', cursive;
   font-size: 1.5em;
   letter-spacing: 2px;
   margin: 0 0 0.25em;
+  text-transform: uppercase;
 `;
 
 export const List = styled.ul`
@@ -66,11 +66,11 @@ export const List = styled.ul`
 `;
 
 export const PersonalData = styled.div`
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-right: -30px;
   margin-left: 80px;
+  margin-right: -30px;
   width: calc(100% + 30px);
 `;
 
@@ -81,17 +81,17 @@ export const Name = styled.h2`
 `;
 
 export const Subtitle = styled(SkillsTitle)`
+  border-bottom: 2px solid ${blue};
   color: ${blue};
   font-size: 1em;
-  padding-bottom: 0.5em;
   margin-bottom: 0.75em;
-  border-bottom: 2px solid ${blue};
+  padding-bottom: 0.5em;
 `;
 
 export const Address = styled.div`
+  color: ${light_blue};
   display: flex;
   flex-direction: column;
-  color: ${light_blue};
   font-size: 0.9em;
   span {
     line-height: 1.3;
@@ -99,8 +99,8 @@ export const Address = styled.div`
 `;
 
 export const Header = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   margin-bottom: 20px;
 `;
 
@@ -109,40 +109,40 @@ export const Section = styled.div`
   position: relative;
 
   &::before {
-    content: '';
-    height: 2px;
-    width: 370px;
     background: ${blue};
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute;
     right: 0;
     top: 0.5em;
-    display: block;
-    position: absolute;
+    width: 370px;
   }
 `;
 
 export const SectionTitle = styled(SkillsTitle)`
-  color: ${blue};
   background: #fefefe;
+  color: ${blue};
   margin-bottom: 0.5em;
 `;
 
 export const Detail = styled.div`
   display: grid;
-  position: relative;
-  grid-template-columns: 1fr 370px;
   grid-gap: 5px 20px;
   grid-template-areas:
     'time .'
     'pos desc'
     'com desc'
     '. desc';
+  grid-template-columns: 1fr 370px;
   margin-bottom: ${(props) => (props.small ? 0 : '2em')};
+  position: relative;
 `;
 
 export const Time = styled.span`
   color: ${red};
-  font-size: 0.9em;
   font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9em;
   grid-area: time;
 `;
 
@@ -153,17 +153,17 @@ export const Position = styled.span`
 `;
 
 export const Company = styled.span`
-  text-transform: uppercase;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.2em;
   grid-area: com;
+  text-transform: uppercase;
 `;
 
 export const Description = styled.p`
-  margin: 0;
-  padding: 0;
   grid-area: desc;
+  margin: 0;
   margin-right: 30px;
+  padding: 0;
 `;
 
 export const SkillsItem = styled.li`

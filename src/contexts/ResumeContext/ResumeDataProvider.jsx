@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
-import defaultState from './initialState';
 import * as actions from '../../actions';
+import defaultState from './initialState';
 
 export const ResumeContext = React.createContext();
 const init = (initialState) => initialState;

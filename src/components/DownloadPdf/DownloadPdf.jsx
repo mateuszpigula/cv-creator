@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
 import axios from 'axios';
+import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
 import { link } from '../../utils/links';
 import { Button } from '../Button/Button';
 import { Spinner } from './DownloadPdf.styles';

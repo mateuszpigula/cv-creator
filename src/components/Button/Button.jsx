@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  display: inline-flex;
-  padding: 1em 2em;
-  margin: 1em 1em 2em;
-  border-radius: 3px;
   background: #fefefe;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: ${(props) => (props.disabled ? '' : '2px 4px 4px 0px black')};
   border: none;
-  white-space: nowrap;
+  border-radius: 3px;
+  box-shadow: ${(props) => (props.disabled ? '' : '2px 4px 4px 0px black')};
+  cursor: pointer;
+  display: inline-flex;
+  margin: 1em 1em 2em;
+  padding: 1em 2em;
   pointer-events: ${(props) => (props.disabled ? 'none' : '')};
+  text-decoration: none;
+  white-space: nowrap;
 
   &:hover {
     transform: translateY(1px);
