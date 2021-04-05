@@ -3,7 +3,7 @@ import { Button } from '../Button/Button';
 import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
 import { IMPORT_JSON } from '../../actions';
 
-export const ImportJSON = () => {
+export const ImportJson = () => {
   const { dispatch } = useContext(ResumeContext);
   const inputRef = useRef(null);
 
