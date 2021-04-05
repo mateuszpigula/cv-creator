@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { ResumeContext } from '../../../contexts/ResumeContext/ResumeDataProvider';
-import { UPDATE_DATA } from '../../../actions';
+import { ResumeContext } from 'contexts/ResumeContext/ResumeDataProvider';
+import { UPDATE_DATA } from 'actions';
 
 const AvatarContainer = styled.div`
   border-radius: 50%;
@@ -35,10 +35,10 @@ const AvatarContainer = styled.div`
   }
 `;
 
-export const EditableAvatar = () => {
+export const EditableAvatar = (): ReactElement => {
   const { state, dispatch } = useContext(ResumeContext);
   const [editable, setEditable] = useState(false);
-  const input = useRef(null);
+  const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!editable) {
@@ -48,21 +48,26 @@ export const EditableAvatar = () => {
     input.current?.click();
   }, [editable]);
 
-  const handleSave = (value) => {
-    console.log(value);
-    dispatch({ type: UPDATE_DATA, payload: { value, target: 'avatar' } });
+  const handleSave = (value: string) => {
+    dispatch({ type: UPDATE_DATA, payload: { value, target: { section: 'avatar' } } });
     setEditable(false);
   };
 
-  const handleFileChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        handleSave(e.target.result);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-      input.current.blur();
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files?.[0]) {
+      return;
     }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (!reader.result) {
+        return;
+      }
+
+      handleSave(reader.result as string);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    input.current?.blur();
   };
 
   if (editable) {

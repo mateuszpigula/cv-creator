@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
-import { Editable } from '../Editable/Editable';
-import * as actions from '../../actions';
-import { EditableAvatar } from '../Editable/EditableAvatar/EditableAvatar';
+import React, { ReactElement, useContext } from 'react';
+import { ResumeState } from 'contexts/ResumeContext/types';
+import { ResumeContext } from 'contexts/ResumeContext/ResumeDataProvider';
+import { Editable } from 'components/Editable/Editable';
+import * as actions from 'actions';
+import { EditableAvatar } from 'components/Editable/EditableAvatar/EditableAvatar';
 import {
   Address,
   Company,
@@ -25,27 +26,27 @@ import {
   SkillsItem,
 } from './CurriculumVitae.styles';
 
-export const CurriculumVitae = (props) => {
+export const CurriculumVitae = (): ReactElement => {
   const { state } = useContext(ResumeContext);
 
   return (
-    <CV id={'cv-paper'} {...props}>
+    <CV id={'cv-paper'}>
       <LeftSide>
         <Skills>
           <Editable
             tag={SkillsTitle}
             initialValue={state.headings.bio}
             action={actions.EDIT_TITLE}
-            target={'bio'}
+            target={{ section: 'bio' }}
           />
-          <Editable tag={'p'} initialValue={state.bio} target={'bio'} textarea />
+          <Editable tag={'p'} initialValue={state.bio} target={{ section: 'bio' }} textarea />
         </Skills>
         {state.skills.map((skill, index) => (
           <Skills key={skill.type}>
             <Editable
               tag={SkillsTitle}
               initialValue={skill.type}
-              target={`skills::type::${index}`}
+              target={{ section: 'skills', property: 'type', index }}
               action={actions.EDIT_SECTION}
             />
             <List>
@@ -54,9 +55,8 @@ export const CurriculumVitae = (props) => {
                   key={single}
                   tag={SkillsItem}
                   initialValue={single}
-                  target={`skills::list::${index}::${skillIndex}`}
+                  target={{ section: 'skills', property: 'list', index, skillIndex }}
                   action={actions.EDIT_SKILL}
-                  space={state.skillsSpace}
                 />
               ))}
             </List>
@@ -67,19 +67,24 @@ export const CurriculumVitae = (props) => {
         <Header>
           <EditableAvatar />
           <PersonalData>
-            <Editable tag={Name} initialValue={state.name} target={'name'} />
+            <Editable tag={Name} initialValue={state.name} target={{ section: 'name' }} />
             {state.position && (
-              <Editable tag={Subtitle} initialValue={state.position} target={'position'} />
+              <Editable
+                tag={Subtitle}
+                initialValue={state.position}
+                target={{ section: 'position' }}
+              />
             )}
             <Address>
               {['Address', 'Phone', 'Email'].map((name) => {
-                const type = name.toLowerCase();
+                const type = name.toLowerCase() as keyof ResumeState;
+                const initialValue = state[type] as string;
                 return (
                   <Editable
                     key={name}
                     tag={'span'}
-                    initialValue={state[type]}
-                    target={type}
+                    initialValue={initialValue}
+                    target={{ section: type }}
                     label={name}
                   />
                 );
@@ -92,32 +97,32 @@ export const CurriculumVitae = (props) => {
             tag={SectionTitle}
             initialValue={state.headings.experience}
             action={actions.EDIT_TITLE}
-            target={'experience'}
+            target={{ section: 'experience' }}
           />
           {[...state.experience].map((company, index) => (
             <Detail key={company.name}>
               <Editable
                 tag={Time}
                 initialValue={company.time}
-                target={`experience::time::${index}`}
+                target={{ section: 'experience', property: 'time', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Position}
                 initialValue={company.position}
-                target={`experience::position::${index}`}
+                target={{ section: 'experience', property: 'position', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Company}
                 initialValue={company.name}
-                target={`experience::name::${index}`}
+                target={{ section: 'experience', property: 'name', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Description}
                 initialValue={company.summary}
-                target={`experience::summary::${index}`}
+                target={{ section: 'experience', property: 'summary', index }}
                 action={actions.EDIT_SECTION}
                 textarea
               />
@@ -129,32 +134,32 @@ export const CurriculumVitae = (props) => {
             tag={SectionTitle}
             initialValue={state.headings.education}
             action={actions.EDIT_TITLE}
-            target={'education'}
+            target={{ section: 'education' }}
           />
           {[...state.education].reverse().map((school, index) => (
             <Detail key={school.name}>
               <Editable
                 tag={Time}
                 initialValue={school.time}
-                target={`education::time::${index}`}
+                target={{ section: 'education', property: 'time', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Position}
                 initialValue={school.name}
-                target={`education::name::${index}`}
+                target={{ section: 'education', property: 'name', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Company}
                 initialValue={school.course}
-                target={`education::course::${index}`}
+                target={{ section: 'education', property: 'course', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Description}
                 initialValue={school.summary}
-                target={`education::summary::${index}`}
+                target={{ section: 'education', property: 'summary', index }}
                 action={actions.EDIT_SECTION}
                 textarea
               />
@@ -166,20 +171,20 @@ export const CurriculumVitae = (props) => {
             tag={SectionTitle}
             initialValue={state.headings.languages}
             action={actions.EDIT_TITLE}
-            target={'languages'}
+            target={{ section: 'languages' }}
           />
           {state.languages.map((language, index) => (
             <Detail small key={language.language}>
               <Editable
                 tag={Position}
                 initialValue={language.language}
-                target={`languages::language::${index}`}
+                target={{ section: 'languages', property: 'language', index }}
                 action={actions.EDIT_SECTION}
               />
               <Editable
                 tag={Description}
                 initialValue={language.level}
-                target={`languages::level::${index}`}
+                target={{ section: 'languages', property: 'level', index }}
                 action={actions.EDIT_SECTION}
               />
             </Detail>

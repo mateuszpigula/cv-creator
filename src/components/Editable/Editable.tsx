@@ -1,10 +1,24 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
-import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
-import * as actions from '../../actions';
+import { StyledComponent } from 'styled-components';
+import { ResumeContext } from 'contexts/ResumeContext/ResumeDataProvider';
+import * as actions from 'actions';
+import { Actions, Target } from 'contexts/ResumeContext/types';
+import { IMPORT_JSON } from 'actions';
 import { Input, PencilIcon, StyledTag } from './Editable.styles';
 
 const cols = 30;
+type Props = {
+  tag:
+    | keyof JSX.IntrinsicElements
+    | StyledComponent<keyof JSX.IntrinsicElements, Record<string, unknown>>;
+  initialValue: string;
+  target: Target;
+  label?: string;
+  textarea?: boolean;
+  action?: Exclude<Actions['type'], typeof IMPORT_JSON>;
+};
+
 export const Editable = ({
   tag,
   initialValue,
@@ -12,17 +26,16 @@ export const Editable = ({
   label,
   textarea,
   action = actions.UPDATE_DATA,
-  ...rest
-}) => {
+}: Props): ReactElement => {
   const { dispatch } = useContext(ResumeContext);
   const [editable, setEditable] = useState(false);
-  const input = useRef(null);
+  const input = useRef<HTMLTextAreaElement & HTMLInputElement>(null);
   const form = useRef(null);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('');
   const Tag = tag;
 
   useEffect(() => {
-    if (editable && input) {
+    if (editable && input.current) {
       input.current.focus();
     }
   }, [editable]);
@@ -31,19 +44,20 @@ export const Editable = ({
     setValue(initialValue);
   }, [initialValue]);
 
-  const handleChange = (e) => setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setValue(e.target.value);
   const handleSave = () => {
-    dispatch({ type: action, payload: { value, target } });
+    dispatch({ type: action, payload: { value, target } } as Actions);
     setEditable(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     handleSave();
   };
 
-  const onEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
+  const onEnterPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSave();
     }
@@ -81,7 +95,7 @@ export const Editable = ({
   }
 
   return (
-    <StyledTag as={Tag} onClick={() => setEditable(true)} {...rest}>
+    <StyledTag as={Tag} onClick={() => setEditable(true)}>
       {label && `${label}: `}
       {value?.split('\n').map((part) => (
         <span key={part}>

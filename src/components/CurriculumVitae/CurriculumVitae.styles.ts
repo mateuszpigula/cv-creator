@@ -126,7 +126,7 @@ export const SectionTitle = styled(SkillsTitle)`
   margin-bottom: 0.5em;
 `;
 
-export const Detail = styled.div`
+export const Detail = styled.div<{ small?: boolean }>`
   display: grid;
   grid-gap: 5px 20px;
   grid-template-areas:
@@ -166,7 +166,7 @@ export const Description = styled.p`
   padding: 0;
 `;
 
-export const SkillsItem = styled.li`
+export const SkillsItem = styled.li<{ space: string }>`
   & + & {
     margin-top: ${(props) => props.space || ''};
   }

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { GlobalStyle } from './GlobalStyles';
-import { CurriculumVitae } from './components/CurriculumVitae/CurriculumVitae';
-import { Home } from './components/Home/Home';
-import { ResumeDataProvider } from './contexts/ResumeContext/ResumeDataProvider';
+import { GlobalStyle } from 'GlobalStyles';
+import { CurriculumVitae } from 'components/CurriculumVitae/CurriculumVitae';
+import { Home } from 'components/Home/Home';
+import { ResumeDataProvider } from 'contexts/ResumeContext/ResumeDataProvider';
 
-const App = () => {
+const App = (): ReactElement => {
   return (
     <ResumeDataProvider>
       <Router>

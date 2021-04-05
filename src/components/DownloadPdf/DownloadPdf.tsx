@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { ReactElement, useContext, useState } from 'react';
 import axios from 'axios';
-import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
-import { link } from '../../utils/links';
-import { Button } from '../Button/Button';
+import { ResumeContext } from 'contexts/ResumeContext/ResumeDataProvider';
+import { link } from 'utils/links';
+import { Button } from 'components/Button/Button';
 import { Spinner } from './DownloadPdf.styles';
 
-export const DownloadPdf = () => {
+export const DownloadPdf = (): ReactElement => {
   const { state } = useContext(ResumeContext);
   const [loading, setLoading] = useState(false);
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
+export const Input = styled.input<{ value: string }>`
   background: #fefefe;
   position: relative;
   width: min(${(props) => props.value.length + 2}ch, 100%);

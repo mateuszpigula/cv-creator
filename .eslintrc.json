@@ -4,6 +4,7 @@
     "jest": true,
     "node": true
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 11,
     "sourceType": "module",
@@ -11,14 +12,58 @@
       "jsx": true
     }
   },
-  "extends": ["plugin:react/recommended", "eslint:recommended", "plugin:import/errors"],
-  "plugins": ["prettier", "better-styled-components"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "@typescript-eslint",
+    "better-styled-components"
+  ],
   "rules": {
-    "prettier/prettier": ["error"],
-    "no-unused-vars": "warn",
-    "react/prop-types": ["off"],
+    "prettier/prettier": [
+      "error",
+      {
+        "arrowParens": "always",
+        "bracketSpacing": true,
+        "htmlWhitespaceSensitivity": "css",
+        "insertPragma": false,
+        "jsxBracketSameLine": true,
+        "jsxSingleQuote": true,
+        "printWidth": 100,
+        "proseWrap": "never",
+        "requirePragma": false,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "useTabs": false
+      }
+    ],
+    "react/prop-types": [
+      "off"
+    ],
     "better-styled-components/sort-declarations-alphabetically": "error",
-    "import/order": 2
+    "import/named": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "index",
+          "internal",
+          "object",
+          "parent",
+          "sibling"
+        ]
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
   },
   "settings": {
     "react": {
@@ -26,7 +71,15 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ],
+        "paths": [
+          "src"
+        ]
       }
     }
   }

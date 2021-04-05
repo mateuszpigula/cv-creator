@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -18,7 +18,14 @@ const StyledButton = styled.button`
     transform: translateY(1px);
   }
 `;
-export const Button = ({ children, onClick, disabled }) => {
+
+type Props = {
+  children: ReactNode;
+  onClick: () => void;
+  disabled?: boolean;
+};
+
+export const Button = ({ children, onClick, disabled }: Props): ReactElement => {
   return (
     <StyledButton onClick={onClick} disabled={disabled}>
       {children}

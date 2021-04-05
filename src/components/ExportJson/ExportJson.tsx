@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { Button } from '../Button/Button';
-import { ResumeContext } from '../../contexts/ResumeContext/ResumeDataProvider';
+import React, { ReactElement, useContext } from 'react';
+import { ResumeContext } from 'contexts/ResumeContext/ResumeDataProvider';
+import { Button } from 'components/Button/Button';
 
-export const ExportJson = () => {
+export const ExportJson = (): ReactElement => {
   const { state } = useContext(ResumeContext);
 
   const downloadJson = () => {
