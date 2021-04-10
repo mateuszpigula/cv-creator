@@ -19,15 +19,16 @@ const StyledButton = styled.button`
   }
 `;
 
-type Props = {
+export type ButtonProps = {
   children: ReactNode;
   onClick: () => void;
   disabled?: boolean;
+  className?: string;
 };
 
-export const Button = ({ children, onClick, disabled }: Props): ReactElement => {
+export const Button = ({ children, onClick, disabled, className }: ButtonProps): ReactElement => {
   return (
-    <StyledButton onClick={onClick} disabled={disabled}>
+    <StyledButton onClick={onClick} disabled={disabled} className={className}>
       {children}
     </StyledButton>
   );

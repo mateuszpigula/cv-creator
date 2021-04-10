@@ -59,6 +59,12 @@ const resumeReducer = (state: ResumeState, action: Actions) => {
     case actions.IMPORT_JSON: {
       return updateLocalStorage({ ...action.payload });
     }
+    case actions.ADD_SECTION: {
+      return updateLocalStorage({
+        ...state,
+        [action.payload]: [...state[action.payload], DEFAULT_STATE[action.payload][0]],
+      });
+    }
     default:
       throw new Error();
   }

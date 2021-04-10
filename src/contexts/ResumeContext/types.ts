@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
-import { EDIT_SECTION, EDIT_SKILL, EDIT_TITLE, IMPORT_JSON, UPDATE_DATA } from 'actions';
+import {
+  ADD_SECTION,
+  EDIT_SECTION,
+  EDIT_SKILL,
+  EDIT_TITLE,
+  IMPORT_JSON,
+  UPDATE_DATA,
+} from 'actions';
 
 export interface Skill {
   type: string;
@@ -97,12 +104,18 @@ export interface ImportJsonAction extends Action {
   payload: ResumeState;
 }
 
+export interface AddSectionAction extends Action {
+  type: typeof ADD_SECTION;
+  payload: Sections;
+}
+
 export type Actions =
   | UpdateDataAction
   | EditTitleAction
   | EditSkillAction
   | EditSectionAction
-  | ImportJsonAction;
+  | ImportJsonAction
+  | AddSectionAction;
 
 export type Target = {
   section: string;
@@ -110,3 +123,5 @@ export type Target = {
   index?: number;
   skillIndex?: number;
 };
+
+export type Sections = 'experience' | 'education' | 'languages';

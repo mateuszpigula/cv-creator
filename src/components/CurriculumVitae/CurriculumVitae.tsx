@@ -4,6 +4,7 @@ import { ResumeContext } from 'contexts/ResumeContext/ResumeDataProvider';
 import { Editable } from 'components/Editable/Editable';
 import * as actions from 'actions';
 import { EditableAvatar } from 'components/Editable/EditableAvatar/EditableAvatar';
+import { AddSectionButton } from 'components/Button/AddSectionButton/AddSectionButton';
 import {
   Address,
   Company,
@@ -100,7 +101,7 @@ export const CurriculumVitae = (): ReactElement => {
             target={{ section: 'experience' }}
           />
           {[...state.experience].map((company, index) => (
-            <Detail key={company.name}>
+            <Detail key={company.name + index}>
               <Editable
                 tag={Time}
                 initialValue={company.time}
@@ -128,6 +129,7 @@ export const CurriculumVitae = (): ReactElement => {
               />
             </Detail>
           ))}
+          <AddSectionButton type={'experience'} />
         </Section>
         <Section>
           <Editable
@@ -137,7 +139,7 @@ export const CurriculumVitae = (): ReactElement => {
             target={{ section: 'education' }}
           />
           {[...state.education].reverse().map((school, index) => (
-            <Detail key={school.name}>
+            <Detail key={school.name + index}>
               <Editable
                 tag={Time}
                 initialValue={school.time}
@@ -165,6 +167,7 @@ export const CurriculumVitae = (): ReactElement => {
               />
             </Detail>
           ))}
+          <AddSectionButton type={'education'} />
         </Section>
         <Section>
           <Editable
@@ -174,7 +177,7 @@ export const CurriculumVitae = (): ReactElement => {
             target={{ section: 'languages' }}
           />
           {state.languages.map((language, index) => (
-            <Detail small key={language.language}>
+            <Detail small key={language.language + index}>
               <Editable
                 tag={Position}
                 initialValue={language.language}
@@ -189,6 +192,7 @@ export const CurriculumVitae = (): ReactElement => {
               />
             </Detail>
           ))}
+          <AddSectionButton type={'languages'} />
         </Section>
       </RightSide>
     </CV>

@@ -16,9 +16,5 @@ export const ExportJson = (): ReactElement => {
     downloadAnchorNode.remove();
   };
 
-  return (
-    <>
-      <Button onClick={downloadJson}>Export to json file</Button>
-    </>
-  );
+  return <Button onClick={downloadJson}>Export to json file</Button>;
 };

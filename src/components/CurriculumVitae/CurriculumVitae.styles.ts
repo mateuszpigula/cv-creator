@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 const WIDTH = 800;
 const HEIGHT = WIDTH * 1.4142;
-const red = '#b63e58';
+export const red = '#b63e58';
 const blue = '#2e3948';
 const light_blue = '#5f6270';
 
@@ -11,6 +11,7 @@ export const CV = styled.div`
   font-size: 0.85em;
   font-weight: 300;
   height: ${HEIGHT}px;
+  overflow: hidden;
   width: ${WIDTH}px;
 `;
 
@@ -105,7 +106,8 @@ export const Header = styled.div`
 `;
 
 export const Section = styled.div`
-  margin: 0 -30px 50px 0;
+  margin: 0 -30px 0px 0;
+  padding-bottom: 20px;
   position: relative;
 
   &::before {
